@@ -8,11 +8,11 @@ const getFilesInformation = async function (dirPath) {
     const files = await readdir(dirPath, { withFileTypes: true });
     for (const file of files) {
       if (file.isFile()) {
-        const fileName = file.name.split('.')[0];
-        const extension = path.extname(file.name).split('.')[1];
+        const { name, ext } = path.parse(`${dirPath}${file.name}`);
+        const extension = ext.slice(1);
         const size = (await stat(dirPath + file.name)).size;
         stdout.write(
-          `${fileName} - ${extension} - ${(size / 1000).toFixed(3)}kb\n`,
+          `${name} - ${extension} - ${(size / 1000).toFixed(3)}kb\n`,
         );
       }
     }
