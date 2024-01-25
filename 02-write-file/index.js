@@ -2,6 +2,11 @@ const fs = require('fs');
 const path = require('path');
 const readline = require('readline');
 const { stdin: input, stdout: output } = require('process');
+const filePath = path.join(__dirname, 'text.txt');
+
+fs.writeFile(filePath, '', (err) => {
+  if (err) throw err;
+});
 
 const rl = readline.createInterface({ input, output });
 
@@ -11,7 +16,7 @@ rl.on('line', (input) => {
   if (input.toString() === 'exit') {
     rl.close();
   } else {
-    fs.appendFile(path.join(__dirname, 'text.txt'), `${input}\n`, (err) => {
+    fs.appendFile(filePath, `${input}\n`, (err) => {
       if (err) throw err;
     });
   }

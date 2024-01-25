@@ -12,7 +12,7 @@ const getFilesInformation = async function (dirPath) {
         const extension = path.extname(file.name).split('.')[1];
         const size = (await stat(dirPath + file.name)).size;
         stdout.write(
-          `${fileName} - ${extension} - ${(size / 1024).toFixed(3)}kb\n`,
+          `${fileName} - ${extension} - ${(size / 1000).toFixed(3)}kb\n`,
         );
       }
     }
